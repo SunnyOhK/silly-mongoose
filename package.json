@@ -1,7 +1,7 @@
 {
-  "name": "25-Ins_Mongoose-CRUD",
-  "version": "1.0.1",
-  "description": "Instructor demo for CRUD operations in Mongoose on subdocuments",
+  "name": "Silly-Mongoose",
+  "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -15,6 +15,6 @@
     "mongoose": "^7.0.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.9"
+    "nodemon": "^2.0.20"
   }
 }
