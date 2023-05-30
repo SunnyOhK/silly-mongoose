@@ -4,15 +4,9 @@ const {
   getSingleUser,
   createUser,
   updateUser,
-  // deleteUser,
-  // getReactions,
-  // addReaction,
-  // getSingleReaction,
-  // removeReaction,
-  // getFriends,
-  // getSingleFriend,
-  // addFriend,
-  // removeFriend
+  deleteUser,
+  addFriend,
+  removeFriend
 } = require('../../controllers/userController');
 
 //* USER ROUTES
@@ -27,19 +21,12 @@ router
   .route('/:userId')
   .get(getSingleUser)
   .put(updateUser)
-  // .delete(deleteUser);
+  .delete(deleteUser);
 
 // //* FRIEND ROUTES
-// // GET ALL | ADD NEW FRIENDS OF SINGLE USER BY USER ID
-// router
-//   .route('/:userId/friends')
-//   .get(getFriends)
-//   .post(addFriend);
-
-// // DELETE FRIEND OF USER BY USER ID
-// router
-//   .route('/:userId/friends/:friendId')
-//   .get(getSingleFriend)
-//   .delete(removeFriend);
+router
+  .route('/:userId/friends/:friendId')
+  .post(addFriend)
+  .delete(removeFriend);
 
 module.exports = router;

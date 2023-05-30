@@ -6,6 +6,8 @@ const {
   // updateThought,
   // deleteThought,
   // getReactions,
+  // addReaction,
+  // getSingleReaction,
   // deleteReaction
 } = require('../../controllers/thoughtController.js');
 
