@@ -44,7 +44,7 @@ const thoughtSchema = new Schema(
       type: Date,
       default: Date.now,
       get: function (createdAt) {
-        return moment(createdAt).format('MMMM Do YYYY, h:mm:ss a')
+        return moment(createdAt).format('MMMM Do, YYYY [@] h:mm a')
       }
     },
     username: {
