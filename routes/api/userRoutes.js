@@ -29,18 +29,6 @@ router
   .put(updateUser)
   // .delete(deleteUser);
 
-//* REACTION ROUTES
-// GET ALL USER REACTIONS, CREATE NEW REACTION
-// router.route('/users/:userId/reactions')
-//   .get(getReactions)
-//   .post(addReaction);
-
-// // REACTION BY ID (GET, UPDATE, DELETE)
-// router
-//   .route('/users/:userId/reactions/:reactionId')
-//   .get(getSingleReaction)
-//   .delete(removeReaction);
-
 // //* FRIEND ROUTES
 // // GET ALL | ADD NEW FRIENDS OF SINGLE USER BY USER ID
 // router
