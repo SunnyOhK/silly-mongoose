@@ -83,6 +83,7 @@ After you clone the repository and install the node modules, please follow this 
 | <img height="20px" src="assets/mongooseIcon.png"> | mongoose | MongoDB object modeling for Node.js |
 | <img height="20px" src="assets/nodemon-icon.png"> | Nodemon | Utility to monitor code changes and restart server |
 | <img height="20px" src="assets/expressJsIcon.png"> | Express | Node.js module |
+| <img height="20px" src="assets/momentIcon.png"> | Moment.js | Date &time display for JavaScript |
 
 
 ## Credits

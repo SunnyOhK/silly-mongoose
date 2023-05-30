@@ -16,17 +16,17 @@ connection.once('open', async () => {
 
 // Create new array of usernames
   const usernames = [
-    'finnjamin',
-    'annabelly',
-    'subawoo22',
-    'sunnyohk'
+    'Finnjamin',
+    'Puddin.Pop',
+    'Subawoo17',
+    'SunnyOhK'
   ];
 
   // Create new array of email addresses
   const emails = [
-    'finndog@gmail.com',
-    'meow@email.com',
-    'bbgirl@hotmail.com',
+    'puppybear@gmail.com',
+    'annabelly-button@email.com',
+    'bbgvroom@hotmail.com',
     'sunny@yahoo.com'
   ];
 
@@ -40,27 +40,27 @@ connection.once('open', async () => {
       email,
     })
   };
-  
+
 const thoughts = [
     {
-      thoughtText: 'Mom gives the best bully rubs!',
+      thoughtText: 'I tooted and cleared the room!',
       createdAt: 'May 25th, 2023 @ 6:57 PM',
-      username: 'finnjamin',
+      username: 'Finnjamin',
     },
     {
-      thoughtText: 'I need more catnip, like yesterday...',
+      thoughtText: 'Mom calls me a fuzzy, little house cow...',
       createdAt: 'May 23rd, 2023 @ 2:22 AM',
-      username: 'annabelly',
+      username: 'Puddin.Pop',
     },
     {
       thoughtText: 'Not sure how I typed this since I am a car.',
       createdAt: 'May 26th, 2023 @ 3:46 PM',
-      username: 'subawoo22',
+      username: 'subawoo17',
     },
     {
       thoughtText: 'How in the world are my pets and car posting on social media?!?',
       createdAt: 'May 29th, 2023 @ 7:27 PM',
-      username: 'sunnyohk',
+      username: 'SunnyOhK',
     },
   ];
 
