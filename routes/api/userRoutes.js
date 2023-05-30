@@ -6,7 +6,8 @@ const {
   updateUser,
   deleteUser,
   addFriend,
-  removeFriend
+  removeFriend,
+  getFriends
 } = require('../../controllers/userController');
 
 //* USER ROUTES
@@ -23,7 +24,13 @@ router
   .put(updateUser)
   .delete(deleteUser);
 
-// //* FRIEND ROUTES
+//* FRIEND ROUTES
+// GET FRIENDS LIST WITH ONLY USERNAME, ID, FRIENDS' USERNAMES AND COUNT
+router
+  .route('/:userId/friends')
+  .get(getFriends);
+
+// ADD AND DELETE INDIVIDUAL FRIENDS FOR USER BY ID
 router
   .route('/:userId/friends/:friendId')
   .post(addFriend)
