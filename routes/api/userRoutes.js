@@ -38,7 +38,7 @@ router
 
 // // DELETE FRIEND OF USER BY USER ID
 // router
-//   .route('users/:userId/friends/:friendId')
+//   .route('/:userId/friends/:friendId')
 //   .get(getSingleFriend)
 //   .delete(removeFriend);
 
