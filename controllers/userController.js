@@ -1,11 +1,10 @@
-const { ObjectId } = require('mongoose').Types;
 const { User, Thought } = require('../models');
 
 module.exports = {
   //* GET ALL USERS
   async getUsers(req, res) {
     try {
-      const users = await User.find();
+      const users = await User.find()
       res.json(users);
     } catch (err) {
       res.status(500).json(err);
@@ -16,16 +15,27 @@ module.exports = {
   async getSingleUser(req, res) {
     try {
       const user = await User.findOne({ _id: req.params.userId })
+        .populate('friends', 'username')
+        .populate('thoughts', 'thoughtText')
         .select('-__v')
-        .populate('thoughts')
-        .populate('friends');
+        .lean();
 
       if (!user) {
         return res.status(404).json({ message: 'No user with that ID' });
       }
-      res.json({
-        user
-      });
+
+      user.friends = user.friends.map(friend => {
+        console.log(friend)
+        return friend.username
+      })
+      console.log(user)
+
+      user.thoughts = user.thoughts.map(thought => {
+        console.log(thought)
+        return thought.thoughtText
+      })
+      res.json(user);
+
     } catch (err) {
       console.log(err)
       res.status(500).json(err);
@@ -56,7 +66,7 @@ module.exports = {
         return res.status(404).json({ message: 'No user with that ID' });
       }
 
-      res.json({message: `Details updated for @${user.username}`, user});
+      res.json({ message: `Details updated for @${user.username}`, user });
     } catch (err) {
       res.status(500).json(err);
     }
@@ -75,7 +85,7 @@ module.exports = {
       //MONGODB DOCS: The $in is a comparison query operator that allows you to select documents where the value of a field is equal to any value in an array --> thoughts are []
       await Thought.deleteMany({ _id: { $in: user.thoughts } });
 
-      res.json({message: `@${user.username} and thoughts have successfully been deleted.`});
+      res.json({ message: `@${user.username} and thoughts have successfully been deleted.` });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -98,7 +108,7 @@ module.exports = {
           .json({ message: 'No user found with that ID.' });
       }
 
-      res.json(user);
+      res.json({ message: `New friend has been added!`, user });
     } catch (err) {
       res.status(500).json(err);
     }
@@ -126,31 +136,31 @@ module.exports = {
   },
 
   //* FIND FRIENDS OF USER
-  async getFriends(req, res) {
-    try {
-      const user = await User.findOne({ _id: req.params.userId })
-        .select('-__v')
-        .populate('friends');
+  // async getFriends(req, res) {
+  //   try {
+  //     const user = await User.findOne({ _id: req.params.userId })
+  //       .select('-__v')
+  //       .populate('friends');
 
-      if (!user) {
-        return res.status(404).json({ message: 'No user with that ID' });
-      }
+  //     if (!user) {
+  //       return res.status(404).json({ message: 'No user with that ID' });
+  //     }
 
-      // would also like to show more specific data
-      const { username, _id, friends, friendCount } = user;
-      const friendsUsernames = friends.map(friend => friend.username);
-      const response = {
-        username,
-        _id,
-        friends: friendsUsernames,
-        friendCount
-      };
+  //     // would also like to show more specific data
+  //     const { username, _id, friends, friendCount } = user;
+  //     const friendsUsernames = friends.map(friend => friend.username);
+  //     const response = {
+  //       username,
+  //       _id,
+  //       friends: friendsUsernames,
+  //       friendCount
+  //     };
 
-      res.json(response);
+  //     res.json(response);
 
-    } catch (err) {
-      console.log(err)
-      res.status(500).json(err);
-    }
-  }
+  //   } catch (err) {
+  //     console.log(err)
+  //     res.status(500).json(err);
+  //   }
+  // }
 };
