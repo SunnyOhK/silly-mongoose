@@ -36,7 +36,7 @@ module.exports = {
   async createUser(req, res) {
     try {
       const user = await User.create(req.body);
-      res.json(user);
+      res.json({ message: `New user @${user.username} has been created!`, user });
     } catch (err) {
       console.log(err)
       res.status(500).json(err);
@@ -56,7 +56,7 @@ module.exports = {
         return res.status(404).json({ message: 'No user with that ID' });
       }
 
-      res.json(user);
+      res.json({message: `Details updated for @${user.username}`, user});
     } catch (err) {
       res.status(500).json(err);
     }
@@ -68,14 +68,14 @@ module.exports = {
       const user = await User.findOneAndRemove({ _id: req.params.userId });
 
       if (!user) {
-        return res.status(404).json({ message: 'No such user.' });
+        return res.status(404).json({ message: 'No user with that ID.' });
       }
 
       //DELETE THOUGHTS BEFORE USER
       //MONGODB DOCS: The $in is a comparison query operator that allows you to select documents where the value of a field is equal to any value in an array --> thoughts are []
       await Thought.deleteMany({ _id: { $in: user.thoughts } });
 
-      res.json({ message: `${user.username} and thoughts have been successfully deleted.` });
+      res.json({message: `@${user.username} and thoughts have successfully been deleted.`});
     } catch (err) {
       console.log(err);
       res.status(500).json(err);

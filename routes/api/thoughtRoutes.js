@@ -3,8 +3,8 @@ const {
   getThoughts,
   getSingleThought,
   createThought,
-  // updateThought,
-  // deleteThought,
+  updateThought,
+  deleteThought,
   // getReactions,
   // addReaction,
   // getSingleReaction,
@@ -20,8 +20,8 @@ router.route('/')
 router
   .route('/:thoughtId')
   .get(getSingleThought)
-//   .put(updateThought)
-//   .delete(deleteThought);
+  .put(updateThought)
+  .delete(deleteThought);
 
 //* REACTION ROUTES
 // GET ALL USER REACTIONS, CREATE NEW REACTION
