@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const Thought = require('./Thought');
 
 // Schema to create User model
 const userSchema = new Schema(
@@ -17,11 +18,11 @@ const userSchema = new Schema(
     },
     thoughts: [{ 
       type: Schema.Types.ObjectId, 
-      ref: 'thought'
+      ref: 'thought',
     }],
     friends: [{ 
       type: Schema.Types.ObjectId, 
-      ref: 'user' 
+      ref: 'user' ,
     }],
   },
   {
@@ -35,11 +36,11 @@ const userSchema = new Schema(
 // Create a virtual property `friendCount` that retrieves the length of the user's friends array field on query
 userSchema.virtual('friendCount').get(function () {
   return this.friends.length
-})
+});
 
-// userSchema.virtual("fullName").get(function(){
-//   return this.first + " " + this.last
-// })
+userSchema.virtual('thoughtCount').get(function () {
+  return this.thoughts.length
+});
 
 const User = model('user', userSchema);
 

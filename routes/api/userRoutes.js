@@ -26,9 +26,9 @@ router
 
 //* FRIEND ROUTES
 // GET FRIENDS LIST WITH ONLY USERNAME, ID, FRIENDS' USERNAMES AND COUNT
-router
-  .route('/:userId/friends')
-  .get(getFriends);
+// router
+//   .route('/:userId/friends')
+//   .get(getFriends);
 
 // ADD AND DELETE INDIVIDUAL FRIENDS FOR USER BY ID
 router

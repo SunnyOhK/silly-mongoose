@@ -5,19 +5,19 @@ const {
   createThought,
   updateThought,
   deleteThought,
-  // getReactions,
-  // addReaction,
+  addReaction,
   // getSingleReaction,
   // deleteReaction
-} = require('../../controllers/thoughtController.js');
+} = require('../../controllers/thoughtController');
 
 //* THOUGHT ROUTES
-router.route('/')
+router
+  .route('/')
   .get(getThoughts)
   .post(createThought);
-
-// /api/thoughts/:thoughtId
-router
+  
+  // /api/thoughts/:thoughtId
+  router
   .route('/:thoughtId')
   .get(getSingleThought)
   .put(updateThought)
@@ -25,10 +25,9 @@ router
 
 //* REACTION ROUTES
 // GET ALL USER REACTIONS, CREATE NEW REACTION
-// router
-//   .route('/:thoughtId/reactions')
-//   .get(getReactions)
-//   .post(addReaction);
+router
+  .route('/:thoughtId/reactions')
+  .post(addReaction);
 
 // // REACTION BY ID (GET, UPDATE, DELETE)
 // router
