@@ -5,7 +5,7 @@ Social network API using NoSQL and MongoDB
 
 
 ## Description
-Silly Mongoose is the back-end database management system for a social networking application. It utilizes NoSQL and MongoDB to ____.
+Silly Mongoose is an API for a social networking application. Here, users can share thoughts, establish friendships, and react to other users' thoughts. This application utilizes a MongoDB database supported by Express.js and Mongoose to fulfill all back-end functionality.
 
 ## Table of Contents
 
@@ -32,24 +32,28 @@ This application does not have a UI so all interactions will take place in the c
               npm i
     - Seed the database from the utils folder
     
-          /silly-mongoose/utils
-              node seed.js
+          /silly-mongoose
+              node utils/seed.js  <--OR-->  npm run seed
             
     - Initiate the MongoDB server from the root folder
 
           /silly-mongoose
-              node index.js  <--OR-->  nodemon index.js
+              node index.js  <--OR-->  nodemon index.js  <--OR-->  npm run dev
 
 3. In your Insomnia dashboard, you can test all GET, POST, PUT, and DEL routes using the following URL and the following subdirectories:
 
 
-|  | URL Paths |  | 
+|  | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   URL Paths |  | 
 | ---- | --- | --- | 
-| . . . . . . . . . . . . | http://localhost:3001/api | . . . . . . . . . . . . | 
-| USERS | THOUGHTS |  |
-| /users | /thoughts |  |
-| /users/:id | /thoughts/:id | /:id |
+| . . . . . . . . . . . . . . . . . . . | &nbsp; &nbsp; &nbsp;  http://localhost:3001/api | . . . . . . . . . . . . . . . . . . . . | 
+| USERS | /users | /users/:userId  |
+| FRIENDS |  | /users/:userId/friends/:friendId |
+| THOUGHTS | /thoughts | /thoughts/:thoughtId |
+| REACTIONS | /thoughts/:thoughtId/reactions | /thoughts/:thoughtId/reactions/:reactionId |
 
+
+
+## Usage 
 
 The demo video (below) will take you step-by-step through the following inquiries:
 1. GET - (find) all users, single user by ID, all thoughts, single thought by ID 
@@ -57,12 +61,13 @@ The demo video (below) will take you step-by-step through the following inquirie
 3. PUT - (update) single user by ID, single thought by ID, single reaction by ID
 4. DEL - (delete) single user by ID, single thought by ID, single reaction by ID, (remove) friend by ID
 
-## Usage 
-
-After you clone the repository and install the node modules, please follow this video tutorial for simple step-by-step instructions:
+BONUS FEATURES: 
+- When adding a friend, the code has been updated to display a new friend for <i>each</i> user in the friendship. After adding a friend to a user, be sure to check the Find All Users & Find User by ID routes to see the new friend lists! 
+- When deleting a user, all associated thoughts (and assigned reactions) will also be deleted!
 
 ### Demo:
 
+After you clone the repository and install the node modules, please follow this video tutorial for simple step-by-step instructions:
 
 
 
@@ -92,7 +97,7 @@ https://github.com/SunnyOhK/silly-mongoose/assets/127900916/9abf1cbb-a554-431c-9
 
 ## Credits
 
-- Alex Gonzalez: EdX Tutor - .
+- Alex Gonzalez: EdX Tutor
 
 
 ## License

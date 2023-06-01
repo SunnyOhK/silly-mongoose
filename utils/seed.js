@@ -53,12 +53,12 @@ const thoughts = [
       username: 'Puddin.Pop',
     },
     {
-      thoughtText: 'Not sure how I typed this since I am a car.',
+      thoughtText: 'Beep beep!',
       createdAt: 'May 26th, 2023 @ 3:46 PM',
       username: 'subawoo17',
     },
     {
-      thoughtText: 'How in the world are my pets and car posting on social media?!?',
+      thoughtText: 'How in the world are my dog and cat posting on social media?!',
       createdAt: 'May 29th, 2023 @ 7:27 PM',
       username: 'SunnyOhK',
     },
