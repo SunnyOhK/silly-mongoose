@@ -66,8 +66,12 @@ After you clone the repository and install the node modules, please follow this 
 
 
 
+https://github.com/SunnyOhK/silly-mongoose/assets/127900916/9abf1cbb-a554-431c-9df1-8bab2104f537
 
-🎬 Or you can view the video at: [Screencastify]()
+
+
+
+🎬 Or you can view the video at: [Screencastify](https://drive.google.com/file/d/1G1wqXve4cfnJ6LX2E4W0oRmq54oSttIc/view)
 
 ## Technology Stack
 
