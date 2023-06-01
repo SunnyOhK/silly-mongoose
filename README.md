@@ -60,9 +60,11 @@ The demo video (below) will take you step-by-step through the following inquirie
 3. PUT - (update) single user by ID, single thought by ID, single reaction by ID
 4. DEL - (delete) single user by ID, single thought by ID, single reaction by ID, (remove) friend by ID
 
-BONUS FEATURES: 
+
+<b>BONUS FEATURES:</b> 
 - When adding a friend, the code has been updated to display a new friend for <i>each</i> user in the friendship. After adding a friend to a user, be sure to check the Find All Users & Find User by ID routes to see the new friend lists! 
 - When deleting a user, all associated thoughts (and assigned reactions) will also be deleted!
+
 
 ### Demo:
 
@@ -95,7 +97,6 @@ https://github.com/SunnyOhK/silly-mongoose/assets/127900916/9abf1cbb-a554-431c-9
 
 
 ## Credits
-
 - Alex Gonzalez: EdX Tutor
 
 
