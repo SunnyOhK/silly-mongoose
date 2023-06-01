@@ -24,15 +24,22 @@ module.exports = {
         return res.status(404).json({ message: 'No user with that ID' });
       }
 
-      user.friends = user.friends.map(friend => {
-        console.log(friend)
+      //* ChatGPT helped me figure out how to remove the error when this function is called on user without friends: `By adding the ?. operator after user.friends, the map() method will only be called if user.friends is defined.`
+      user.friends = user.friends?.map(friend => {
+        if (!friend) {
+          return;
+        } else {
         return friend.username
+        }
       })
       console.log(user)
 
-      user.thoughts = user.thoughts.map(thought => {
-        console.log(thought)
+      user.thoughts = user.thoughts?.map(thought => {
+        if (!thought) {
+          return;
+        } else {
         return thought.thoughtText
+        }
       })
       res.json(user);
 
@@ -108,7 +115,20 @@ module.exports = {
           .json({ message: 'No user found with that ID.' });
       }
 
-      res.json({ message: `New friend has been added!`, user });
+  //* SIMULTANEOUSLY ADD BOTH USERS BY ID TO EACH OTHER'S FRIEND ARRAY
+      const friend = await User.findOneAndUpdate(
+        { _id: req.params.friendId },
+        { $addToSet: { friends: req.params.userId } },
+        { runValidators: true, new: true }
+      );
+
+      if (!friend) {
+        return res
+          .status(404)
+          .json({ message: 'No friend found with that ID.' });
+      }
+
+      res.json({ message: `@${user.username} and @${friend.username} are now friends!`, user });
     } catch (err) {
       res.status(500).json(err);
     }
@@ -123,44 +143,21 @@ module.exports = {
         { runValidators: true, new: true }
       );
 
-      if (!user) {
+      const friend = await User.findOneAndUpdate(
+        { _id: req.params.friendId },
+        { $pull: { friends: req.params.userId } },
+        { runValidators: true, new: true }
+      );
+    
+      if (!user || !friend) {
         return res
           .status(404)
-          .json({ message: 'No user found with that ID.' });
+          .json({ message: 'No user or friend found with that ID.' });
       }
-      res.json(user);
+      res.json({ message: `Friend @${friend.username} has been removed from @${user.username}`, user });
 
     } catch (err) {
       res.status(500).json(err);
     }
-  },
-
-  //* FIND FRIENDS OF USER
-  // async getFriends(req, res) {
-  //   try {
-  //     const user = await User.findOne({ _id: req.params.userId })
-  //       .select('-__v')
-  //       .populate('friends');
-
-  //     if (!user) {
-  //       return res.status(404).json({ message: 'No user with that ID' });
-  //     }
-
-  //     // would also like to show more specific data
-  //     const { username, _id, friends, friendCount } = user;
-  //     const friendsUsernames = friends.map(friend => friend.username);
-  //     const response = {
-  //       username,
-  //       _id,
-  //       friends: friendsUsernames,
-  //       friendCount
-  //     };
-
-  //     res.json(response);
-
-  //   } catch (err) {
-  //     console.log(err)
-  //     res.status(500).json(err);
-  //   }
-  // }
+  }
 };

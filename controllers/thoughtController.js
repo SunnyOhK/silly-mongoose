@@ -74,6 +74,9 @@ module.exports = {
         return res.status(404).json({ message: 'No thought with that ID.'});
       }
 
+      //DELETE REACTIONS BEFORE DELETING THOUGHT
+      await Thought.deleteMany({ _id: { $in: thought.reactions } });
+
       res.json({ message: `Thought has been deleted for @${thought.username}` });
     } catch (err) {
       console.log(err);
@@ -81,7 +84,7 @@ module.exports = {
     }
   },
 
-  //* FIND ALL REACTIONS TO A THOUGHT
+  //* ADD A NEW REACTION TO SINGLE THOUGHT BY ID
   async addReaction(req, res) {
     try {
       const thought = await Thought.findOneAndUpdate(
@@ -101,11 +104,29 @@ module.exports = {
     }
   },
 
-  //* CREATE NEW REACTION TO A THOUGHT
-  // async addReaction(req, res) {
-  //   try {
-  //     const
-  //   }
-  // }
+  //* REMOVE REACTION TO A THOUGHT
+  async removeReaction(req, res) {
+    try {
+      const thought = await Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $pull: { reactions: req.body } },
+        { runValidators: true, new: true }
+      );
+      
+      if (!thought) {
+        return res.status(404).json({ message: 'No thought with that ID.' });
+      }
 
+      const reaction = await Thought.findOneAndUpdate(
+        { _id: req.params.reactionId },
+        { $pull: { reactions: req.body } },
+        { runValidators: true, new: true }
+        );
+
+      res.json({ message: `Reaction has been removed from @${thought.username}'s thought #${thought._id}` });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  },
 };
