@@ -1,4 +1,4 @@
-# Silly Mongoose
+# Silly Mongoose  &nbsp; <img height="26px" src="assets/mongoose-img.png">
 
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://choosealicense.com/licenses/mit) 
 
